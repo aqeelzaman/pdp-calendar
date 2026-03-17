@@ -1,0 +1,29 @@
+create calendar --name "Cal A" --timezone "America/New_York"
+use calendar --name "Cal A"
+create event "First Team Meeting" from 2025-07-01T09:00 to 2025-07-01T12:00
+create event "Second Team Meeting Series" from 2025-07-02T10:00 to 2025-07-02T12:00 repeats MWF for 3 times
+create event "Third Team Meeting Series" from 2025-07-03T10:00 to 2025-07-03T15:00 repeats TW until 2025-07-10
+
+create event "First Exam" on 2025-08-01
+create event "Second Exam Series" on 2025-08-02 repeats MWF for 3 times
+create event "Third Exam Series" on 2025-08-03 repeats TW until 2025-08-10
+
+edit event start "First Team Meeting" from 2025-07-01T09:00 to 2025-07-01T12:00 with 2025-07-01T10:00
+
+print events from 2025-07-01T09:00 to 2025-07-01T12:00
+print events on 2025-07-01
+
+create calendar --name "Cal B" --timezone "America/Los_Angeles"
+
+copy event "First Team Meeting" on 2025-07-01T10:00 --target "Cal B" to 2025-07-23T09:00
+copy events between 2025-08-01 and 2025-08-20 --target "Cal B" to 2025-06-01
+copy events on 2025-07-01 --target "Cal B" to 2025-07-03
+
+show status on 2025-07-01T09:00
+
+edit calendar --name "Cal B" --property name "Cal 2"
+edit calendar --name "Cal 2" --property timezone "America/New_York"
+
+export cal "validCommandsCSV.csv"
+export cal "validCommandsICS.ics"
+exit
